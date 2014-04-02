@@ -26,7 +26,6 @@ get '/customers' do
   # @customers << Customer.new("Chris", "Johnston", "chris@bitmakerlabs.com", "Instructor")
   erb :customers
 end  
-
 get '/modify' do
   erb :modify
 end
@@ -39,3 +38,4 @@ post '/customers' do
 end  
 
 
+#
