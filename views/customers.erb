@@ -8,6 +8,12 @@
 <body>  
 <h1>View All Customers</h1>
 
+<ul>
+  <% @customers.each do |contact| %>
+  <li> <%= contact.first_name %> <%= contact.last_name %>, <%= contact.notes %>: <%= contact.email %>  </li>
+  <% end %>
+</ul>
+
 
 </body>
 
