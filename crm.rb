@@ -31,4 +31,11 @@ get '/modify' do
   erb :modify
 end
 
+post '/customers' do
+  new_customer = Customer.new(params[:first_name], params[:last_name], params[:email], params[:notes])
+  @@rolodex.add_customer(new_customer)
+  redirect to('/customers')
+  puts params
+end  
+
 
