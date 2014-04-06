@@ -4,38 +4,73 @@ require 'sinatra'
 
 @@rolodex = Rolodex.new
 
+@@rolodex.add_customer(Customer.new("Marlene", "Dietrich", "marlene@dietrich.com", "Icon"))
+
+
 get '/' do 
-  @crm_app_name = "KUNDEN"
-  @current_time = Time.now
+  @crm_app_name = "Kunden"
   erb :index
-end  
-
-
-get '/new' do 
-  erb :new
- end  
-
-get '/customers/id' do
-  erb :id
 end
 
 get '/customers' do
-  # @customers = []
-  # @customers << Customer.new("Julie", "Hache", "julie@bitmakerlabs.com", "Instructor")
-  # @customers << Customer.new("Will", "Richman", "will@bitmakerlabs.com", "Co-Founder")
-  # @customers << Customer.new("Chris", "Johnston", "chris@bitmakerlabs.com", "Instructor")
   erb :customers
-end  
-get '/modify' do
-  erb :modify
+end
+
+get '/customers/new' do
+  erb :new_customer
+end
+
+
+get '/customers/:id' do
+  @customer = @@rolodex.find(params[:id].to_i)
+  if @customer
+    erb :show_customer
+  else
+    raise Sinatra::NotFound
+  end
+end
+
+get '/customers/:id/edit' do
+  @customer = @@rolodex.find(params[:id].to_i)
+    if @customer
+    erb :edit#_customer
+  else
+    erb :index #raise Sinatra::NotFound
+  end
+end    
+
+put '/customers/:id' do
+  @customer = @@rolodex.find(params[:id].to_i)
+  if @customer
+    @customer.first_name = params[:first_name]
+    @customer.last_name = params[:last_name]
+    @customer.email = params[:email]
+    @customer.notes = params[:notes]
+
+    redirect to('/customers')
+  else
+    raise Sinatra::NotFound
+  end
 end
 
 post '/customers' do
   new_customer = Customer.new(params[:first_name], params[:last_name], params[:email], params[:notes])
   @@rolodex.add_customer(new_customer)
   redirect to('/customers')
-  puts params
 end  
 
+get '/find_customer' do
+  erb :find_customer
+end  
 
-#
+delete '/customers/:id' do
+  @customer = @@rolodex.find(params[:id].to_i)
+  if @customer
+    @@rolodex.remove_customer(@customer)
+    redirect to('/customers')
+  else
+    raise Sinatra::NotFound
+  end    
+ end 
+
+

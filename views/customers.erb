@@ -1,25 +1,5 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-  <link rel="stylesheet" text="text/css" href="style.css"
-</head>
-
-<body>  
-<h1>View All Customers</h1>
-
-<ul>
-  <% @@rolodex.customers.each do |contact| %>
-  <li> <%= contact.first_name %> <%= contact.last_name %>, <%= contact.notes %>: <%= contact.email %>  </li>
-  <% end %>
+  <ul>
+    <% @@rolodex.customers.each do |customer| %>
+      <li> <a href="/customers/<%= customer.id %>"> <%= customer.first_name %> <%= customer.last_name %>  <%= customer.email %> <%= customer.notes %></a> </li>
+    <% end %>
 </ul>
-
-
-</body>
-
-<footer>
-</footer>
-
-
-
-</html>

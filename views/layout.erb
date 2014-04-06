@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" type= "text/css" href="/style.css">
+  </head>
+
+  <body>
+    <div class= "interface">
+      <header>
+        <ul>
+          <li>
+            <a href="/">Home</a>
+          </li>
+          <li>
+            <a href="">About</a>
+          </li>
+          <li>
+            <a href="">Contact</a>
+          </li>
+        </ul>
+      </header>
+    </div>
+
+    <div id="section">
+
+      <div id="sidebar">
+        <nav>
+          <h2><a href="/">Main Menu</a></h2>
+            <ul>
+              <li><a href="/customers">View All Customers</a></li>
+              <li><a href="/customers/new">Create New Customer</a></li>
+              <li><a href="/customers/:id/edit">Modify Customer</a></li>
+            </ul>
+        </nav>
+      </div>
+
+
+      <div id="main">
+        <%= yield %>
+        <p>
+          This is is where everything should go.<br>
+          This is is where everything should go.<br>
+          This is is where everything should go.<br>
+          This is is where everything should go.<br>
+          This is is where everything should go.<br>
+          This is is where everything should go.<br>
+          This is is where everything should go.</p>
+      </div>
+
+      <div class="interface">
+        <footer>
+          <p>an All About Drama Design
+          </p>
+        </footer>
+      </div>
+  </body>
+
+</html>
